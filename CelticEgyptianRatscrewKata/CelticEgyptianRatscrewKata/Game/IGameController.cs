@@ -18,5 +18,6 @@ namespace CelticEgyptianRatscrewKata.Game
         int StackSize { get; }
         Card TopOfStack { get; }
         int NumberOfCards(IPlayer player);
+        bool IsPenalised(IPlayer player);
     }
 }

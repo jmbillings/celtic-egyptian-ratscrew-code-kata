@@ -45,6 +45,11 @@ namespace CelticEgyptianRatscrewKata.Game
             return _gameState.NumberOfCards(player.Name);
         }
 
+        public bool IsPenalised(IPlayer player)
+        {
+            return _gameState.IsPlayerPenalised(player.Name);
+        }
+
         public bool AddPlayer(IPlayer player)
         {
             if (Players.Any(x => x.Name == player.Name)) return false;

@@ -72,12 +72,20 @@ namespace CelticEgyptianRatscrewKata.Game
             return _gameController.NumberOfCards(player);
         }
 
+        public bool IsPenalised(IPlayer player)
+        {
+            return _gameController.IsPenalised(player);
+        }
+
         private void LogGameState()
         {
             _log.Log(string.Format("Stack ({0}): {1} ", _gameController.StackSize, _gameController.StackSize > 0 ? _gameController.TopOfStack.ToString() : ""));
             foreach (var player in _gameController.Players)
             {
-                _log.Log(string.Format("{0}: {1} cards", player.Name, _gameController.NumberOfCards(player)));
+                _log.Log(string.Format("{0}: {1} cards{2}", 
+                    player.Name, 
+                    _gameController.NumberOfCards(player), 
+                    _gameController.IsPenalised(player) ? " (PENALISED)" : ""));
             }
         }
     }
