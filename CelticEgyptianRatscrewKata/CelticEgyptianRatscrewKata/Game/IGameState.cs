@@ -54,5 +54,10 @@ namespace CelticEgyptianRatscrewKata.Game
         /// Resets the snap penalty from all players
         /// </summary>
         void ResetPenalties();
+
+        /// <summary>
+        /// Returns whether or not all players have a penalised state
+        /// </summary>
+        bool AreAllPlayersPenalised();
     }
 }

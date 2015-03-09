@@ -111,5 +111,10 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             _penalisedPlayers.Clear();
         }
+
+        public bool AreAllPlayersPenalised()
+        {
+            return _penalisedPlayers.Count == _decks.Count;
+        }
     }
 }

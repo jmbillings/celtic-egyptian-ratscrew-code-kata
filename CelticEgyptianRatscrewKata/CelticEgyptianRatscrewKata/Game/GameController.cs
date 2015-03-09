@@ -65,14 +65,24 @@ namespace CelticEgyptianRatscrewKata.Game
 
         public bool AttemptSnap(IPlayer player)
         {
+            if (_gameState.IsPlayerPenalised(player.Name))
+                return false;
+
             AddPlayer(player);
 
             if (_snapValidator.CanSnap(_gameState.Stack))
             {
                 _gameState.WinStack(player.Name);
+                _gameState.ResetPenalties();
                 return true;
             }
-            return false;
+            else 
+            {
+                _gameState.PenalisePlayer(player.Name);
+                if (_gameState.AreAllPlayersPenalised())
+                    _gameState.ResetPenalties();
+                return false;    
+            }
         }
 
         /// <summary>
