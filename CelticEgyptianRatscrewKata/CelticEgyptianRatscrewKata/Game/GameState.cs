@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 
@@ -12,6 +13,7 @@ namespace CelticEgyptianRatscrewKata.Game
     {
         private readonly Cards _stack;
         private readonly IDictionary<string, Cards> _decks;
+        private readonly ICollection<string> _penalisedPlayers; 
 
         /// <summary>
         /// Default constructor.
@@ -26,6 +28,7 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             _stack = stack;
             _decks = decks;
+            _penalisedPlayers = new HashSet<string>();
         }
 
         public Cards Stack { get {return new Cards(_stack);} }
@@ -92,6 +95,21 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             ClearStack();
             _decks.Clear();
+        }
+
+        public void PenalisePlayer(string playerId)
+        {
+            _penalisedPlayers.Add(playerId);
+        }
+
+        public bool IsPlayerPenalised(string playerId)
+        {
+            return _penalisedPlayers.Contains(playerId);
+        }
+
+        public void ResetPenalties()
+        {
+            _penalisedPlayers.Clear();
         }
     }
 }

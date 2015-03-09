@@ -35,6 +35,24 @@ namespace CelticEgyptianRatscrewKata.Game
         /// </summary>
         void Clear();
 
-        int NumberOfCards(string name);
+        /// <summary>
+        /// Returns the number of cards the given player has in their hand
+        /// </summary>
+        int NumberOfCards(string playerId);
+
+        /// <summary>
+        /// Applies the snap penalty to the given player
+        /// </summary>
+        void PenalisePlayer(string playerId);
+
+        /// <summary>
+        /// Returns whether or not the given player has the snap penalty applied
+        /// </summary>
+        bool IsPlayerPenalised(string playerId);
+
+        /// <summary>
+        /// Resets the snap penalty from all players
+        /// </summary>
+        void ResetPenalties();
     }
 }
