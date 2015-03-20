@@ -16,10 +16,10 @@ namespace CelticEgyptianRatscrewKata.Tests
             // ARRANGE
             var player1 = new Player("p1");
             var player2 = new Player("p2");
-            var snapValidator = Substitute.For<ISnapValidator>();
-            snapValidator.CanSnap(Arg.Any<Cards>()).Returns(false, true);
+            var snapRule = Substitute.For<ISnapRule>();
+            snapRule.IsSnapValid(Arg.Any<Cards>()).Returns(false, true);
 
-            var gameController = new GameController(new GameState(), snapValidator, Substitute.For<IDealer>(), Substitute.For<IShuffler>(), new Penalties(), Substitute.For<IPlayerSequence>());
+            var gameController = new GameController(new GameState(), snapRule, Substitute.For<IDealer>(), Substitute.For<IShuffler>(), new Penalties(), Substitute.For<IPlayerSequence>());
             gameController.AddPlayer(player1);
             gameController.AddPlayer(player2);
 
@@ -39,10 +39,10 @@ namespace CelticEgyptianRatscrewKata.Tests
             // ARRANGE
             var player1 = new Player("p1");
             var player2 = new Player("p2");
-            var snapValidator = Substitute.For<ISnapValidator>();
-            snapValidator.CanSnap(Arg.Any<Cards>()).Returns(false, true);
+            var snapRule = Substitute.For<ISnapRule>();
+            snapRule.IsSnapValid(Arg.Any<Cards>()).Returns(false, true);
 
-            var gameController = new GameController(new GameState(), snapValidator, Substitute.For<IDealer>(), Substitute.For<IShuffler>(), new Penalties(), Substitute.For<IPlayerSequence>());
+            var gameController = new GameController(new GameState(), snapRule, Substitute.For<IDealer>(), Substitute.For<IShuffler>(), new Penalties(), Substitute.For<IPlayerSequence>());
             gameController.AddPlayer(player1);
             gameController.AddPlayer(player2);
 
@@ -64,10 +64,10 @@ namespace CelticEgyptianRatscrewKata.Tests
             // ARRANGE
             var player1 = new Player("p1");
             var player2 = new Player("p2");
-            var snapValidator = Substitute.For<ISnapValidator>();
-            snapValidator.CanSnap(Arg.Any<Cards>()).Returns(false, false, true);
+            var snapRule = Substitute.For<ISnapRule>();
+            snapRule.IsSnapValid(Arg.Any<Cards>()).Returns(false, false, true);
 
-            var gameController = new GameController(new GameState(), snapValidator, Substitute.For<IDealer>(), Substitute.For<IShuffler>(), new Penalties(), Substitute.For<IPlayerSequence>());
+            var gameController = new GameController(new GameState(), snapRule, Substitute.For<IDealer>(), Substitute.For<IShuffler>(), new Penalties(), Substitute.For<IPlayerSequence>());
             gameController.AddPlayer(player1);
             gameController.AddPlayer(player2);
 

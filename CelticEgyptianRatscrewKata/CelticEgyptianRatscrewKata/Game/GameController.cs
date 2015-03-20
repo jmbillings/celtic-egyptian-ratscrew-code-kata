@@ -11,7 +11,7 @@ namespace CelticEgyptianRatscrewKata.Game
     /// </summary>
     public class GameController : IGameController
     {
-        private readonly ISnapValidator _snapValidator;
+        private readonly ISnapRule _snapRule;
         private readonly IDealer _dealer;
         private readonly IShuffler _shuffler;
         private readonly IList<IPlayer> _players;
@@ -19,11 +19,11 @@ namespace CelticEgyptianRatscrewKata.Game
         private readonly IPenalties _penalties;
         private readonly IPlayerSequence _playerSequence;
 
-        public GameController(IGameState gameState, ISnapValidator snapValidator, IDealer dealer, IShuffler shuffler, IPenalties penalties, IPlayerSequence playerSequence)
+        public GameController(IGameState gameState, ISnapRule snapRule, IDealer dealer, IShuffler shuffler, IPenalties penalties, IPlayerSequence playerSequence)
         {
             _players = new List<IPlayer>();
             _gameState = gameState;
-            _snapValidator = snapValidator;
+            _snapRule = snapRule;
             _dealer = dealer;
             _shuffler = shuffler;
             _penalties = penalties;
@@ -97,7 +97,7 @@ namespace CelticEgyptianRatscrewKata.Game
             {
                 return ExecuteNoSnap();
             }
-            if (_snapValidator.CanSnap(_gameState.Stack))
+            if (_snapRule.IsSnapValid(_gameState.Stack))
             {
                 return ExecuteValidSnap(player);
             }

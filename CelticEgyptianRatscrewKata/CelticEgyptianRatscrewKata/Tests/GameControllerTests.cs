@@ -19,7 +19,7 @@ namespace CelticEgyptianRatscrewKata.Tests
 
             var gameController = new GameController(
                 new GameState(), 
-                Substitute.For<ISnapValidator>(), 
+                Substitute.For<ISnapRule>(), 
                 new Dealer(), 
                 new NoneShufflingShuffler(), 
                 penalties, 
@@ -111,14 +111,14 @@ namespace CelticEgyptianRatscrewKata.Tests
         private static GameController CreateGameController()
         {
             var gameState = new GameState();
-            var completeSnapValidator = CreateCompleteSnapValidator();
+            var completeSnapRule = CreateCompleteSnapRule();
             var dealer = new Dealer();
             var noneShufflingShuffler = new NoneShufflingShuffler();
 
-            return new GameController(gameState, completeSnapValidator, dealer, noneShufflingShuffler, Substitute.For<IPenalties>(), new LaxPlayerSequence());
+            return new GameController(gameState, completeSnapRule, dealer, noneShufflingShuffler, Substitute.For<IPenalties>(), new LaxPlayerSequence());
         }
 
-        private static ISnapValidator CreateCompleteSnapValidator()
+        private static ISnapRule CreateCompleteSnapRule()
         {
             var rules = new ISnapRule[]
                         {
@@ -126,7 +126,7 @@ namespace CelticEgyptianRatscrewKata.Tests
                             new SandwichSnapRule(),
                             new StandardSnapRule()
                         };
-            return new SnapValidator(rules);
+            return new CompositeSnapRule(rules);
         }
 
         public static Cards CreateNewSimpleDeck()

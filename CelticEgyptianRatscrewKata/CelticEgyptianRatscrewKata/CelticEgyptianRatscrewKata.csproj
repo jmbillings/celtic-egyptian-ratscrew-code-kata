@@ -73,8 +73,7 @@
     <Compile Include="Rank.cs" />
     <Compile Include="SnapRules\ISnapRule.cs" />
     <Compile Include="SnapRules\SandwichSnapRule.cs" />
-    <Compile Include="SnapRules\ISnapValidator.cs" />
-    <Compile Include="SnapRules\SnapValidator.cs" />
+    <Compile Include="SnapRules\CompositeSnapRule.cs" />
     <Compile Include="SnapRules\StandardSnapRule.cs" />
     <Compile Include="Tests\EndToEndPenaltyTests.cs" />
     <Compile Include="Tests\PlayerSequenceTests.cs" />
@@ -84,7 +83,7 @@
     <Compile Include="Tests\DealerTests.cs" />
     <Compile Include="Tests\GameControllerTests.cs" />
     <Compile Include="Tests\ShufflerTests.cs" />
-    <Compile Include="Tests\SnapValidatorTests.cs" />
+    <Compile Include="Tests\CompositeSnapRuleTests.cs" />
     <Compile Include="Suit.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,16 +5,16 @@ using NUnit.Framework;
 namespace CelticEgyptianRatscrewKata.Tests
 {
     [TestFixture]
-    public class SnapValidatorTests
+    public class CompositeSnapRuleTests
     {
         [Test]
         public void ReturnsFalseIfNoRulesAndNoStack()
         {
             //ARRANGE
-            var snapValidator = new SnapValidator();
+            var snapRule = new CompositeSnapRule();
 
             //ACT
-            var result = snapValidator.CanSnap(Cards.Empty());
+            var result = snapRule.IsSnapValid(Cards.Empty());
 
             //ASSERT
             Assert.IsFalse(result);
@@ -26,10 +26,10 @@ namespace CelticEgyptianRatscrewKata.Tests
             //ARRANGE
             var alwaysTrueRule = Substitute.For<ISnapRule>();
             alwaysTrueRule.IsSnapValid(Arg.Any<Cards>()).Returns(true);
-            var snapValidator = new SnapValidator(alwaysTrueRule);
+            var snapRule = new CompositeSnapRule(alwaysTrueRule);
 
             //ACT
-            var result = snapValidator.CanSnap(Cards.Empty());
+            var result = snapRule.IsSnapValid(Cards.Empty());
 
             //ASSERT
             Assert.IsTrue(result);
@@ -48,10 +48,10 @@ namespace CelticEgyptianRatscrewKata.Tests
             alwaysTrueRule.IsSnapValid(Arg.Any<Cards>()).Returns(false);
             alwaysTrueRule.IsSnapValid(cardStack).Returns(true);
 
-            var snapValidator = new SnapValidator(alwaysTrueRule);
+            var snapRule = new CompositeSnapRule(alwaysTrueRule);
 
             //ACT
-            var result = snapValidator.CanSnap(cardStack);
+            var result = snapRule.IsSnapValid(cardStack);
 
             //ASSERT
             Assert.IsTrue(result);
