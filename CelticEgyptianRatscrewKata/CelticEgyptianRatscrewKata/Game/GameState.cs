@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CelticEgyptianRatscrewKata.SnapRules;
+using CelticEgyptianRatscrewKata.Tests;
 
 namespace CelticEgyptianRatscrewKata.Game
 {
     /// <summary>
     /// Represents the state of the game at any point.
     /// </summary>
-    public class GameState : IGameState
+    public class GameState : IGameState, ISnapRuleData
     {
         private readonly Cards _stack;
         private readonly IDictionary<string, Cards> _decks;
@@ -28,6 +30,11 @@ namespace CelticEgyptianRatscrewKata.Game
         }
 
         public Cards Stack { get {return new Cards(_stack);} }
+
+        public Card CurrentCallout
+        {
+            get { throw new NotImplementedException(); }
+        }
 
         /// <summary>
         /// Add the given player to the game with the given deck.
@@ -85,6 +92,11 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             if (!_decks.ContainsKey(playerId)) throw new ArgumentException("The selected player doesn't exist");
             return _decks[playerId].Count();
+        }
+
+        public ISnapRuleData GetSnapRuleData()
+        {
+            return this;
         }
 
         public void Clear()

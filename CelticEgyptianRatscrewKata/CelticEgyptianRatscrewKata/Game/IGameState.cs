@@ -1,4 +1,5 @@
 ﻿using System;
+using CelticEgyptianRatscrewKata.SnapRules;
 
 namespace CelticEgyptianRatscrewKata.Game
 {
@@ -36,5 +37,7 @@ namespace CelticEgyptianRatscrewKata.Game
         void Clear();
 
         int NumberOfCards(string name);
+
+        ISnapRuleData GetSnapRuleData();
     }
 }

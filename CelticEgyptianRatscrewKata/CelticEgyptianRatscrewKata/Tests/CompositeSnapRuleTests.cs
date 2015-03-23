@@ -14,7 +14,7 @@ namespace CelticEgyptianRatscrewKata.Tests
             var snapRule = new CompositeSnapRule();
 
             //ACT
-            var result = snapRule.IsSnapValid(Cards.Empty());
+            var result = snapRule.IsSnapValid(TestSnapRuleData.Empty());
 
             //ASSERT
             Assert.IsFalse(result);
@@ -25,11 +25,11 @@ namespace CelticEgyptianRatscrewKata.Tests
         {
             //ARRANGE
             var alwaysTrueRule = Substitute.For<ISnapRule>();
-            alwaysTrueRule.IsSnapValid(Arg.Any<Cards>()).Returns(true);
+            alwaysTrueRule.IsSnapValid(Arg.Any<ISnapRuleData>()).Returns(true);
             var snapRule = new CompositeSnapRule(alwaysTrueRule);
 
             //ACT
-            var result = snapRule.IsSnapValid(Cards.Empty());
+            var result = snapRule.IsSnapValid(TestSnapRuleData.Empty());
 
             //ASSERT
             Assert.IsTrue(result);
@@ -45,13 +45,14 @@ namespace CelticEgyptianRatscrewKata.Tests
             });
 
             var alwaysTrueRule = Substitute.For<ISnapRule>();
-            alwaysTrueRule.IsSnapValid(Arg.Any<Cards>()).Returns(false);
-            alwaysTrueRule.IsSnapValid(cardStack).Returns(true);
+            alwaysTrueRule.IsSnapValid(Arg.Any<ISnapRuleData>()).Returns(false);
+            var snapRuleData = new TestSnapRuleData(cardStack);
+            alwaysTrueRule.IsSnapValid(snapRuleData).Returns(true);
 
             var snapRule = new CompositeSnapRule(alwaysTrueRule);
 
             //ACT
-            var result = snapRule.IsSnapValid(cardStack);
+            var result = snapRule.IsSnapValid(snapRuleData);
 
             //ASSERT
             Assert.IsTrue(result);

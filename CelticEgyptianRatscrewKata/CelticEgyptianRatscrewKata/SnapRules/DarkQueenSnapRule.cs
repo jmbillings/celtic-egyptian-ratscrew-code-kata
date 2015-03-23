@@ -9,10 +9,10 @@ namespace CelticEgyptianRatscrewKata.SnapRules
     {
         private static readonly Card DarkQueen = new Card(Suit.Spades, Rank.Queen);
 
-        public bool IsSnapValid(Cards cardStack)
+        public bool IsSnapValid(ISnapRuleData snapRuleData)
         {
             // Should this be last? Not sure what order the cardStack is in.
-            return DarkQueen.Equals(cardStack.FirstOrDefault());
+            return DarkQueen.Equals(snapRuleData.Stack.FirstOrDefault());
         }
     }
 }

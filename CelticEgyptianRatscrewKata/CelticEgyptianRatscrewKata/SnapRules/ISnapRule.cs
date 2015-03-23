@@ -6,8 +6,8 @@
     public interface ISnapRule
     {
         /// <summary>
-        /// Checks whether a snap is valid on the <paramref name="cardStack"/>.
+        /// Checks whether a snap is valid on the <paramref name="snapRuleData"/>.
         /// </summary>
-        bool IsSnapValid(Cards cardStack);
+        bool IsSnapValid(ISnapRuleData snapRuleData);
     }
 }

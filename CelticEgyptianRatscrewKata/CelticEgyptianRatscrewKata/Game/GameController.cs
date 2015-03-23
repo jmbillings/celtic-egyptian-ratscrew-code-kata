@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CelticEgyptianRatscrewKata.GameSetup;
 using CelticEgyptianRatscrewKata.SnapRules;
+using CelticEgyptianRatscrewKata.Tests;
 
 namespace CelticEgyptianRatscrewKata.Game
 {
@@ -97,7 +98,7 @@ namespace CelticEgyptianRatscrewKata.Game
             {
                 return ExecuteNoSnap();
             }
-            if (_snapRule.IsSnapValid(_gameState.Stack))
+            if (_snapRule.IsSnapValid(_gameState.GetSnapRuleData()))
             {
                 return ExecuteValidSnap(player);
             }

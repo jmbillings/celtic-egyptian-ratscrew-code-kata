@@ -6,11 +6,11 @@
     /// </summary>
     public class SandwichSnapRule : ISnapRule
     {
-        public bool IsSnapValid(Cards cardStack)
+        public bool IsSnapValid(ISnapRuleData snapRuleData)
         {
             Rank? previous = null;
             Rank? previousPrevious = null;
-            foreach (var card in cardStack)
+            foreach (var card in snapRuleData.Stack)
             {
                 if (card.Rank == previousPrevious)
                 {

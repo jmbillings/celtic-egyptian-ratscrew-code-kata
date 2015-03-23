@@ -18,9 +18,9 @@ namespace CelticEgyptianRatscrewKata.SnapRules
             _rules = rules;
         }
 
-        public bool IsSnapValid(Cards cardStack)
+        public bool IsSnapValid(ISnapRuleData snapRuleData)
         {
-            return _rules.Any(r => r.IsSnapValid(cardStack));
+            return _rules.Any(r => r.IsSnapValid(snapRuleData));
         }
     }
 }

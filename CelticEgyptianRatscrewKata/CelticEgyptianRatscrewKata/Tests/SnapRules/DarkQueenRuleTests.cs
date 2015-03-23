@@ -13,7 +13,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
             var sandwichSnapRule = new DarkQueenSnapRule();
 
             //ACT
-            var result = sandwichSnapRule.IsSnapValid(Cards.Empty());
+            var result = sandwichSnapRule.IsSnapValid(TestSnapRuleData.Empty());
 
             //ASSERT
             Assert.IsFalse(result);
@@ -30,7 +30,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
             });
 
             //ACT
-            var result = sandwichSnapRule.IsSnapValid(stack);
+            var result = sandwichSnapRule.IsSnapValid(new TestSnapRuleData(stack));
 
             //ASSERT
             Assert.IsTrue(result);
@@ -48,7 +48,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
             });
 
             //ACT
-            var result = sandwichSnapRule.IsSnapValid(stack);
+            var result = sandwichSnapRule.IsSnapValid(new TestSnapRuleData(stack));
 
             //ASSERT
             Assert.IsTrue(result);
@@ -66,7 +66,7 @@ namespace CelticEgyptianRatscrewKata.Tests.SnapRules
             });
 
             //ACT
-            var result = sandwichSnapRule.IsSnapValid(stack);
+            var result = sandwichSnapRule.IsSnapValid(new TestSnapRuleData(stack));
 
             //ASSERT
             Assert.IsFalse(result);
