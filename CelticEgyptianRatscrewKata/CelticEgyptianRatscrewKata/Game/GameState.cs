@@ -29,6 +29,7 @@ namespace CelticEgyptianRatscrewKata.Game
             _decks = decks;
         }
 
+
         public Cards Stack { get {return new Cards(_stack);} }
 
         public Card CurrentCallout
@@ -98,6 +99,8 @@ namespace CelticEgyptianRatscrewKata.Game
         {
             return this;
         }
+
+        Rank IGameState.CurrentCallout { get; set; }
 
         public void Clear()
         {
