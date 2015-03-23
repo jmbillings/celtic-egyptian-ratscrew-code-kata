@@ -1,5 +1,6 @@
 ﻿using System;
 using CelticEgyptianRatscrewKata.SnapRules;
+using NSubstitute.Core;
 
 namespace CelticEgyptianRatscrewKata.Game
 {
@@ -39,5 +40,7 @@ namespace CelticEgyptianRatscrewKata.Game
         int NumberOfCards(string name);
 
         ISnapRuleData GetSnapRuleData();
+
+        Rank? CurrentCallout { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace CelticEgyptianRatscrewKata.Game
@@ -5,7 +6,7 @@ namespace CelticEgyptianRatscrewKata.Game
     public interface IGameController
     {
         bool AddPlayer(IPlayer player);
-        Card PlayCard(IPlayer player);
+        PlayedCardAndCallout PlayCard(IPlayer player);
         bool AttemptSnap(IPlayer player);
 
         /// <summary>
@@ -18,5 +19,17 @@ namespace CelticEgyptianRatscrewKata.Game
         int StackSize { get; }
         Card TopOfStack { get; }
         int NumberOfCards(IPlayer player);
+    }
+
+    public class PlayedCardAndCallout
+    {
+        public readonly Card Card;
+        public readonly Rank Callout;
+
+        public PlayedCardAndCallout(Card card, Rank callout)
+        {
+            Card = card;
+            Callout = callout;
+        }
     }
 }

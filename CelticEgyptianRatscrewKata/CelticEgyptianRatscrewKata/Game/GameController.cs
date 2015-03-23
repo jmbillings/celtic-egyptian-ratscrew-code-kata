@@ -79,7 +79,7 @@ namespace CelticEgyptianRatscrewKata.Game
             return true;
         }
 
-        public Card PlayCard(IPlayer player)
+        public PlayedCardAndCallout PlayCard(IPlayer player)
         {
             if (!_playerSequence.IsCurrentPlayer(player.Name))
             {
@@ -138,10 +138,22 @@ namespace CelticEgyptianRatscrewKata.Game
             return false;
         }
 
-        private Card ExecutePlayCard(IPlayer player)
+        private PlayedCardAndCallout ExecutePlayCard(IPlayer player)
         {
             _playerSequence.AdvanceToNextPlayer();
-            return _gameState.PlayCard(player.Name);
+            var card = _gameState.PlayCard(player.Name);
+            var callout = IncrementCallout();
+            return new PlayedCardAndCallout(card, callout);
+        }
+
+        private Rank IncrementCallout()
+        {
+            Rank? currentValue = _gameState.CurrentCallout;
+            Rank newValue = currentValue.HasValue
+                ? (Rank) ((1 + (int) currentValue.Value)%13)
+                : Rank.Ace;
+            _gameState.CurrentCallout = newValue;
+            return newValue;
         }
 
         private void ExecuteAttemptToPlayOutOfTurn(IPlayer player)

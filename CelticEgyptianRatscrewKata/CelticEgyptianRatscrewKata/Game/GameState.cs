@@ -100,7 +100,7 @@ namespace CelticEgyptianRatscrewKata.Game
             return this;
         }
 
-        Rank IGameState.CurrentCallout { get; set; }
+        Rank? IGameState.CurrentCallout { get; set; }
 
         public void Clear()
         {

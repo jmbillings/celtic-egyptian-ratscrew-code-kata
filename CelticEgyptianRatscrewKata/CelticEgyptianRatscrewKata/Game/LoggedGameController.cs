@@ -18,12 +18,15 @@ namespace CelticEgyptianRatscrewKata.Game
             return _gameController.AddPlayer(player);
         }
 
-        public Card PlayCard(IPlayer player)
+        public PlayedCardAndCallout PlayCard(IPlayer player)
         {
-            var playedCard = _gameController.PlayCard(player);
-            _log.Log(string.Format("{0} has played the {1}", player.Name, playedCard));
+            var playedCardAndCallout = _gameController.PlayCard(player);
+            if (playedCardAndCallout != null)
+            {
+                _log.Log(string.Format("{0} has played the {1} and called out {2}", player.Name, playedCardAndCallout.Card, playedCardAndCallout.Callout));
+            }
             LogGameState();
-            return playedCard;
+            return playedCardAndCallout;
         }
 
         public bool AttemptSnap(IPlayer player)
